@@ -1,9 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const jokePath = 'joke.txt';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const jokePath = path.join(__dirname, 'joke.txt');
+
 if (!fs.existsSync(jokePath)) {
-  console.error('Error: joke.txt does not exist');
+  console.error(`Error: joke.txt does not exist at ${jokePath}`);
   process.exit(1);
 }
 
